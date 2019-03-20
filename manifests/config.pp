@@ -33,7 +33,7 @@ class nginx::config (
     mode    => '0775',
   }
 
-  file { $config_confd: 
+  file { $confd: 
     ensure  => directory,
     recurse => true,
     owner   => $owner,
