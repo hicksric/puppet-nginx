@@ -19,6 +19,7 @@ define nginx::vhost(
     owner   => $owner,
     group   => $group,
     notify  => Service['nginx_service'],
+    require => File["config_confd"],
   }
 
   file { "$vhost_docroot": 
