@@ -9,6 +9,7 @@ define nginx::vhost(
   Optional[String] $config_vdir_enable = $::nginx::config_vdir_enable,
   String $log_dir                      = $::nginx::config_log_dir,
   String $vhost_dir                    = $::nginx::vhost_dir,
+  String $config_confd                 = $::nginx::config_confd,
 ) {
   $vhost_docroot = "${::nginx::docroot}/${name}"
   
@@ -19,7 +20,7 @@ define nginx::vhost(
     owner   => $owner,
     group   => $group,
     notify  => Service['nginx_service'],
-    require => File["config_confd"],
+    require => File["$config_confd"],
   }
 
   file { "$vhost_docroot": 
